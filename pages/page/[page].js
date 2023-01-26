@@ -3,6 +3,7 @@ import Post from '../../components/Post'
 import { allPosts } from "contentlayer/generated";
 import { pick } from "@contentlayer/client";
 import Pagnation from '../../components/Pagnation';
+import BlogHeader from '../../components/BlogHeader';
 
 export const show_per_page = 10
 
@@ -20,6 +21,7 @@ export default function Home({ posts, totalPostCount }) {
         <>
             <div id="top" className="flex flex-col max-w-6xl">
                 <div className="drop-shadow-md flex flex-col rounded-lg">
+                    <BlogHeader />
                     {JSON.parse(posts).map(post => (
                         <Post key={post.slug} post={post} />
                     ))}

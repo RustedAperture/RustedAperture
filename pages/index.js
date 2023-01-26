@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from 'next/link';
 import Post from '../components/Post'
 import Pagnation from '../components/Pagnation';
+import BlogHeader from '../components/BlogHeader';
 
 export const show_per_page = 10
 
@@ -38,6 +39,7 @@ const Index = ({ posts, totalPostCount }) => {
   return (
     <div id="top" className="flex flex-col max-w-6xl">
       <div className="drop-shadow-md flex flex-col rounded-lg">
+        <BlogHeader />
         {posts.map(post => {
           return <Post key={post.slug} post={post} />
         }
