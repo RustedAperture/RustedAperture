@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image';
 
 export function slugify(title) {
     return title.toLowerCase().trim().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
@@ -10,7 +11,7 @@ export default function Post({ post }) {
     return (
         <div className="text-slate-500 bg-white m-2 rounded-lg flex flex-row items-stretch">
             {post.image && (
-                <a href={`${post.slug}`} > <img className="aspect-square max-h-[220px] object-cover" src={(post.image)} alt={post.title} /></a>
+                <a href={`${post.slug}`} > <Image className="aspect-square max-h-[220px] object-cover" src={post.image} alt={post.title} /></a>
             )}
             <div className="p-6 prose max-w-none grow">
                 <h2 className="text-slate-900 font-medium my-0">{post.title}</h2>
