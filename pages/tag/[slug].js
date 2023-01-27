@@ -1,52 +1,15 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { marked } from 'marked'
-import Link from 'next/link'
 import ItemPost from '../../components/ItemPost'
 import { allPosts } from "contentlayer/generated"
 import { pick } from "@contentlayer/client";
+import BlogHeader from '../../components/layout/BlogHeader';
+import Head from 'next/head'
 
 export function slugify(title) {
     return title.toLowerCase().trim().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
 }
-
-export default function tag({ postsout }) {
-
-
-
-
-    return (
-        <>
-            <div className="container my-3">
-                <div className="row">
-
-                    <div className="col-lg-10 post-date m-1 p-2m-auto">
-
-                        {
-                            postsout.map((post, index) => {
-
-                                return <ItemPost key={index} post={post} />
-                            }
-                            )
-
-                        }
-
-
-                    </div>
-
-
-                </div>
-            </div>
-        </>
-    )
-
-
-
-
-
-}
-
 
 export async function getStaticPaths() {
     const files = fs.readdirSync(path.join('data'))
@@ -56,8 +19,6 @@ export async function getStaticPaths() {
     const temppaths = files.map((filename) => {
 
         let filepathname = path.join('data', filename)
-
-        //console.log(filepathname)
 
         const markdownWithMeta = fs.readFileSync(filepathname,
             'utf-8'
@@ -76,22 +37,12 @@ export async function getStaticPaths() {
         } else {
             return null
         }
-
-
     })
-
-
-
 
     const paths = tempStorage.filter((item,
         index) => {
         return tempStorage.indexOf(item) === index
     })
-
-
-
-    // const paths=["npm"]
-
 
     return {
         paths,
@@ -102,14 +53,14 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
 
+    const currentSlug = slug
+
     const posts = allPosts.map((post) => pick(post, ["title", "date", "slug", "description", "draft", "tags", "categories"]));
 
     // Get files from the posts dir
     const files = fs.readdirSync(path.join('data'))
 
     let tempStorage = []
-
-
 
     // Get slug and frontmatter from posts
 
@@ -138,9 +89,36 @@ export async function getStaticProps({ params: { slug } }) {
 
     return {
         props: {
-            postsout
+            postsout, currentSlug
         },
     }
+}
+
+export default function tag({ postsout, currentSlug }) {
+    return (
+        <>
+            <Head>
+                <title>Tag: {currentSlug}</title>
+            </Head>
+            <div id="top" className="flex flex-col max-w-6xl">
+                <div className="drop-shadow-md flex flex-col rounded-lg">
+                    <BlogHeader title={"Current Tag: " + currentSlug} />
+
+                    {
+                        postsout.map((post, index) => {
+
+                            return <ItemPost key={index} post={post} slug={currentSlug} />
+                        }
+                        )
+
+                    }
 
 
+
+
+
+                </div>
+            </div>
+        </>
+    )
 }
