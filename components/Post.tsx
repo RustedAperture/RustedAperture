@@ -30,7 +30,7 @@ export default function Post({ post }) {
                             }
                         )
                     } </div>
-                    <div className="text-slate-500 mr-2">{`${date.getMonth() + 1} - ${date.getDate()} - ${date.getFullYear()}`}</div>
+                    <div className="text-slate-500 mr-2">{`${date.toLocaleString('default', { month: 'long' })} - ${date.getDate()} - ${date.getFullYear()}`}</div>
                 </div>
                 <p className="text-slate-500 line-clamp-2">{post.description}</p>
                 <Link legacyBehavior href={`${post.slug}`}>
