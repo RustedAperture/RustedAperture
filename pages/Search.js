@@ -11,7 +11,7 @@ export default function Search() {
     search.map(
         (post) => {
             if (post.draft === false) {
-                if (post.title.toLowerCase().includes(query.q) || post.description.toLowerCase().includes(query.q) || post.tags.map(v => v.toLowerCase()).includes(query.q) || post.categories.map(v => v.toLowerCase()).includes(query.q)) {
+                if (post.title.toLowerCase().includes(query.q) || post.description.toLowerCase().includes(query.q) || post.tags.map(v => v.toLowerCase()).includes(query.q)) {
                     TempPosts.push(post)
                 } else {
                     TempPosts.push(null)

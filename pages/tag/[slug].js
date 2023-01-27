@@ -55,7 +55,7 @@ export async function getStaticProps({ params: { slug } }) {
 
     const currentSlug = slug
 
-    const posts = allPosts.map((post) => pick(post, ["title", "date", "slug", "description", "draft", "tags", "categories"]));
+    const posts = allPosts.map((post) => pick(post, ["title", "date", "slug", "description", "draft", "tags"]));
 
     // Get files from the posts dir
     const files = fs.readdirSync(path.join('data'))
