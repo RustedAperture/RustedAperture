@@ -16,7 +16,6 @@ export default function BlogHeader({ title }) {
     function handleKeyPress(target) {
         // I'm guessing you have value stored in state
         if (target.charCode == 13) {
-            console.log(Object.values({ qval })[0])
             window.location.href = `/Search?q=${Object.values({ qval })[0]}`;
         }
     }

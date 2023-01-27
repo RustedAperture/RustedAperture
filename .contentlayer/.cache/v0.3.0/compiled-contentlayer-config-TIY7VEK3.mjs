@@ -29,7 +29,7 @@ var Post = defineDocumentType(() => ({
     },
     author: {
       type: "string",
-      required: true
+      required: false
     },
     description: {
       type: "string",
@@ -103,4 +103,4 @@ var contentlayer_config_default = makeSource({
 export {
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-CTJPGRPV.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-TIY7VEK3.mjs.map

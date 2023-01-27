@@ -15,7 +15,7 @@ export type Post = {
   type: 'Post'
   title: string
   date: IsoDateTimeString
-  author: string
+  author?: string | undefined
   description: string
   slug?: string | undefined
   id?: number | undefined

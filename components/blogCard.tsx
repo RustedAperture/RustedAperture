@@ -7,8 +7,6 @@ export function slugify(title) {
 
 export default function BlogCard({ post }) {
 
-    console.log({ post })
-
     const date = new Date(post.date)
     return (
         <div className="text-slate-500 bg-white m-2 rounded-lg flex flex-row items-stretch">
