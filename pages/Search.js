@@ -28,21 +28,23 @@ export default function Search() {
     )
 
     return (
-        <div className="drop-shadow-md flex flex-col rounded-lg">
-            <BlogHeader title={"Search Term: " + query.q} />
-
-            {
-                posts.length > 0 ?
-                    posts.map((post, index) => (
-                        <Post key={index} post={post} />
-                    )) : <div className='m-auto p-5 mx-5 '>
-                        <h2 className='text-center'>
-                            {query.q ? `No post find base on ${query.q} ` : 'loadding.. '}
-                        </h2>
-                    </div>
-            }
-
-
-        </div>
+        <>
+            <Head>
+                <title>Search</title>
+            </Head>
+            <div className="drop-shadow-md flex flex-col rounded-lg">
+                <BlogHeader title={"Search Term: " + query.q} />
+                {
+                    posts.length > 0 ?
+                        posts.map((post, index) => (
+                            <Post key={index} post={post} />
+                        )) : <div className='m-auto p-5 mx-5 '>
+                            <h2 className='text-center'>
+                                {query.q ? `No post find base on ${query.q} ` : 'loadding.. '}
+                            </h2>
+                        </div>
+                }
+            </div>
+        </>
     )
 }

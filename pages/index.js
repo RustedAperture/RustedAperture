@@ -4,6 +4,7 @@ import Post from '../components/Post'
 import Pagnation from '../components/layout/Pagnation';
 import BlogHeader from '../components/layout/BlogHeader';
 import fs from 'fs';
+import Head from 'next/head'
 
 export const show_per_page = 10
 
@@ -50,16 +51,21 @@ export async function getStaticProps() {
 
 const Index = ({ posts, totalPostCount }) => {
   return (
-    <div id="top" className="flex flex-col max-w-6xl">
-      <div className="drop-shadow-md flex flex-col rounded-lg">
-        <BlogHeader title={"Blog Posts"} />
-        {posts.map(post => {
-          return <Post key={post.slug} post={post} />
-        }
-        )}
+    <>
+      <Head>
+        <title>Cameron Varley</title>
+      </Head>
+      <div id="top" className="flex flex-col max-w-6xl">
+        <div className="drop-shadow-md flex flex-col rounded-lg">
+          <BlogHeader title={"Blog Posts"} />
+          {posts.map(post => {
+            return <Post key={post.slug} post={post} />
+          }
+          )}
+        </div>
+        <Pagnation totalPostCount={totalPostCount} />
       </div>
-      <Pagnation totalPostCount={totalPostCount} />
-    </div>
+    </>
   )
 }
 
