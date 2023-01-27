@@ -20,6 +20,7 @@ export default function BlogHeader({ title }) {
             window.location.href = `/Search?q=${Object.values({ qval })[0]}`;
         }
     }
+
     return (
         <div className="bg-white m-2 rounded-lg flex flex-col md:flex-row overflow-hidden justify-between md:items-center py-3 px-6" >
             <div><strong>{title}</strong></div>
