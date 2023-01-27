@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import profilepic from '../../data/imgs/profile.jpg';
+import profilepic from '../../img/profile.jpg';
 import { faGithub, faMastodon, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 
