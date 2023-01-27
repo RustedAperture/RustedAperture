@@ -9,6 +9,7 @@ import {
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
 import Link from "next/link";
+import BlogHeader from '../../components/layout/BlogHeader';
 
 export function slugify(title) {
     return title.toLowerCase().trim().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
@@ -56,37 +57,34 @@ const PostLayout: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <Head>
                 <title>{post.title}</title>
             </Head>
-
             <article className="flex flex-col max-w-6xl basis-full">
                 <div className="flex flex-col grow">
-                    <div className="bg-white m-2 rounded-lg flex flex-col md:flex-row overflow-hidden justify-between items-baseline items-stretch p-6">
-                        {/* Display parsed markdown content */}
-                        <div className="my-2">
-                            <time dateTime={post.date}>Date:
-                                <span className="ml-2 p-2">{`${date.getMonth() + 1} - ${date.getDate()} - ${date.getFullYear()}`}</span></time>
-                        </div>
-                        <div className="my-2">
-                            {
-                                post.tags.map(
-                                    tag => {
-
-                                        const slug = slugify(tag)
-
-                                        return (<Link legacyBehavior key={tag} href={`/tag/${slug}`}>
-                                            <a className='text-slate-500 underline mr-2'>
-                                                <h6 className='inline'>#{tag}</h6>
-                                            </a>
-                                        </Link>)
-                                    }
-                                )
-                            }
-                        </div>
-                    </div>
                     <div className="bg-white m-2 rounded-lg">
                         {/* Display parsed markdown content */}
                         <div className="p-6 prose max-w-none">
+                            <h1>{post.title}</h1>
                             <Component />
+
                         </div>
+                    </div>
+                </div>
+                <div className="bg-white m-2 rounded-lg flex flex-row overflow-hidden justify-between items-baseline items-stretch p-6">
+                    <div className="text-slate-500"><strong>{`${date.toLocaleString('default', { month: 'long' })} - ${date.getDate()} - ${date.getFullYear()}`}</strong></div>
+                    <div>
+                        {
+                            post.tags.map(
+                                tag => {
+
+                                    const slug = slugify(tag)
+
+                                    return (<Link legacyBehavior key={tag} href={`/tag/${slug}`}>
+                                        <a className='text-slate-500 underline mr-2'>
+                                            <h6 className='inline'>#{tag}</h6>
+                                        </a>
+                                    </Link>)
+                                }
+                            )
+                        }
                     </div>
                 </div>
                 {post.toc ? (

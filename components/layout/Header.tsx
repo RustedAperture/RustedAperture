@@ -7,7 +7,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header() {
     return (
-        <header className="max-lg:self-stretch drop-shadow-md flex flex-row flex-wrap xl:flex-col items-stretch sm:min-w-[20rem] bg-white rounded-lg p-6 m-2">
+        <header className="xl:sticky top-8 max-xl:self-stretch drop-shadow-md flex flex-row flex-wrap xl:flex-col items-stretch sm:min-w-[20rem] bg-white rounded-lg p-6 m-2">
             <div className="max-md:basis-full drop-shadow-md flex-auto grow xl:grow-0 flex flex-col xl:flex-row items-center justify-center xl:justify-start shrink-0 text-center xl:text-left">
                 <Link href="/"><Image className="drop-shadow-md max-xl:m-2 mr-2 h-20 w-20 rounded-lg" src={profilepic} alt="Cameron Varley" /></Link>
                 <div>
