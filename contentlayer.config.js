@@ -1,6 +1,8 @@
 import GithubSlugger from "github-slugger"
 import { defineDocumentType, makeSource, defineNestedType } from 'contentlayer/source-files'
 import rehypeSlug from "rehype-slug";
+import rehypeCodeTitles from 'rehype-code-titles'
+import rehypePrism from 'rehype-prism-plus'
 
 const Tag = defineNestedType(() => ({
     name: 'Tag',
@@ -105,6 +107,10 @@ export default makeSource({
     contentDirPath: 'data',
     documentTypes: [Post],
     mdx: {
-        rehypePlugins: [rehypeSlug],
+        rehypePlugins: [
+            rehypeSlug,
+            rehypeCodeTitles,
+            rehypePrism
+        ],
     },
 })
