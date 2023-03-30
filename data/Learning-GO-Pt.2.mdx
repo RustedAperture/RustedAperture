@@ -1,0 +1,45 @@
+---
+date: 2023-03-29T22:14:00
+description: Continuing my GO education after a long break.
+tags: ["Go", "ADHD"]
+draft: false
+title: Learning GO Pt.2
+---
+
+After a much-needed vacation, I'm back to learn more about Go. Yes, it's been 2 months, but that's what happens when you have ADHD and work a full-time job. Sometimes you forget that you have a blog and are in the middle of learning a new language. Other priorities, like work and vacation planning, start to bury stuff so deep you forget. On that note, let's continue. This chapter in my journey will discuss the `FMT` package and conditionals.
+
+## FMT Package
+
+The format or `FMT` package has more to it than printing text to the terminal. This package is designed to help us format data. 
+
+There are three main methods of printing text to the terminal `Print`, `Println`, and `Printf`. The latter of the three allows us to utilize verbs. Verbs in Go are similar to placeholders in Python. They allow you to inject a variable into the string without messing up the formatting.
+
+There are particular types of verbs in Go that can also be used. `%T` will give us the type of the variable that we pass in, while `%d` converts a number into a string. `%f` and `%.2f` are both ways to get a float; however, the latter will only show 2 decimal places. A list of all the verbs can be found [here](https://pkg.go.dev/fmt#hdr-Printing).
+
+The `Sprint` and `Sprintln` functions allow us to format data without printing it to the terminal. The difference between `Sprint` and `Print` is that `Sprint` returns a value, whereas `Print` will print it out.
+
+Go's `Scan` function will accept user input up to the first space and assign it to a variable at a specific address. For this reason, you need to pass the variable with a `&` at the start. Since the `Scan` function only returns the first word, you need to add multiple `Scan` and assign each to a variable for each word you want the user to input.
+
+## Conditionals
+
+The basics of `if` and `switch` statement are the same as most languages and doesn't require much explaining. I was able to breeze through the first 10 chapters on [Codecademy](https://www.codecademy.com) without issue. 
+
+One thing that I found to be pretty cool was scoped variables for our `if` and `switch` blocks. This means that we can create variable that are only accessible inside of these sections. As per the example below.
+
+```Go
+if product := 61; product > 60 {  
+	fmt.Println(product, "  is greater than 60")
+}
+```
+
+## Random Numbers
+
+`rand.Intn()` is how Go generates a random number. The way that it functions is very similar to C++ in that the seed is 1 by default. If you want to generate a new number every time the program is run, you must create a unique seed number. This can be done using the `time` package to pass the current time.
+
+```Go
+rand.Seed(time.Now().UnixNano())
+```
+
+## Conclusion
+
+The format package is straightforward to understand once to grasp the difference between the three types of prints and sprints. Conditionals are basically the same as every other lesson and do not warrant much learning. The final task that approaches us is functions. I can't see it being that difficult with this set's ease. I'm hoping to get the next one done by this weekend. Keep an eye out for part 3.
