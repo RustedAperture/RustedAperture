@@ -4,11 +4,14 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 import Layout from '../components/layout/Layout';
 import { Analytics } from '@vercel/analytics/react';
+import { ThemeProvider } from "next-themes";
 
 export default function App({ Component, pageProps }) {
   return (
     <Layout>
-      <Component {...pageProps} />
+      <ThemeProvider attribute="class">
+        <Component {...pageProps} />
+      </ThemeProvider>
       <Analytics />
     </Layout>
   );

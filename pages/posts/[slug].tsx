@@ -10,6 +10,7 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
 import Link from "next/link";
 import BlogHeader from '../../components/layout/BlogHeader';
+import { ThemeSwitcher } from "../../components/ThemeSwitcher";
 
 export function slugify(title) {
     return title.toLowerCase().trim().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
@@ -59,17 +60,19 @@ const PostLayout: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             </Head>
             <article className="flex flex-col max-w-6xl basis-full">
                 <div className="flex flex-col grow">
-                    <div className="bg-white m-2 rounded-lg">
+                    <div className="bg-white dark:bg-zinc-800 mx-2 mt-2 mb-0.5 rounded-t-lg rounded-b">
                         {/* Display parsed markdown content */}
-                        <div className="p-6 prose max-w-none">
-                            <h1>{post.title}</h1>
+                        <div className="p-6 prose dark:prose-invert max-w-none">
+                            <div className="flex">
+                                <h1 className="text-zinc-800 dark:text-zinc-50 grow">{post.title}</h1>
+                                <ThemeSwitcher />
+                            </div>
                             <Component />
-
                         </div>
                     </div>
                 </div>
-                <div className="bg-white m-2 rounded-lg flex flex-row overflow-hidden justify-between items-baseline items-stretch p-6">
-                    <div className="text-slate-500"><strong>{`${date.toLocaleString('default', { month: 'long' })} - ${date.getDate()} - ${date.getFullYear()}`}</strong></div>
+                <div className="bg-white dark:bg-zinc-800 mx-2 my-0.5 rounded-t rounded-b-lg flex flex-row overflow-hidden justify-between items-baseline items-stretch p-6">
+                    <div className=""><strong>{`${date.toLocaleString('default', { month: 'long' })} - ${date.getDate()} - ${date.getFullYear()}`}</strong></div>
                     <div>
                         {
                             post.tags.map(
@@ -78,7 +81,7 @@ const PostLayout: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                                     const slug = slugify(tag)
 
                                     return (<Link legacyBehavior key={tag} href={`/tag/${slug}`}>
-                                        <a className='text-slate-500 underline mr-2'>
+                                        <a className='underline mr-2'>
                                             <h6 className='inline'>#{tag}</h6>
                                         </a>
                                     </Link>)

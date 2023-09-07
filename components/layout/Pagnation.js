@@ -20,7 +20,7 @@ function Pagnation({ totalPostCount }) {
         <div className="flex flex-row">
             {
                 pageIntoArray.map(page => {
-                    return <a key={page} className="aspect-square rounded-lg bg-neutral-800 text-white m-2 p-2" href={page === 0 ? "/" : `/page/${page + 1}`}>
+                    return <a key={page} className="aspect-square rounded-lg hover:bg-neutral-700 bg-neutral-800 text-white my-0.5 mx-2 p-2" href={page === 0 ? "/" : `/page/${page + 1}`}>
                         <div className="aspect-square w-6 text-center">{page + 1}</div>
                     </a>
                 })
