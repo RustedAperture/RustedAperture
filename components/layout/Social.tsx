@@ -5,19 +5,19 @@ export default function Social() {
     return (
         <div className='xl:max-w-[50rem] xl:sticky top-8 max-xl:self-stretch drop-shadow-md flex flex-row flex-wrap items-stretch justify-center ml-1.5 mr-1.5'>
             <a className="min-w-[48px] text-2xl text-center text-indigo-500 p-3 m-0.5"
-                href="https://mstdn.ca/@RustedAperture" target="_blank" rel="noopener">
+                href="https://mstdn.ca/@RustedAperture" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faMastodon}/>
             </a>
             <a className=" text-2xl text-center text-sky-500 p-3 m-0.5"
-                href="https://twitter.com/RustedAperture" target="_blank" rel="noopener">
+                href="https://twitter.com/RustedAperture" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faTwitter}/>
             </a>
             <a className="min-w-[48px] text-2xl text-center text-gray-600 dark:text-gray-300 p-3 m-0.5"
-                href="https://github.com/RustedAperture" target="_blank" rel="noopener">
+                href="https://github.com/RustedAperture" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faGithub}/>
             </a>
             <a className="min-w-[48px] text-2xl text-center text-blue-500 p-3 m-0.5"
-                href="https://www.linkedin.com/in/cameron-varley-687368136/" target="_blank" rel="noopener">
+                href="https://www.linkedin.com/in/cameron-varley-687368136/" target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faLinkedin}/>
             </a>
         </div>
