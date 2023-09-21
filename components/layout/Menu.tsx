@@ -11,11 +11,11 @@ export default function Menu() {
                 rel="me" href="/">
                 <span>Home</span>
             </Link>
-            <Link className="grow text-center text-zinc-900 rounded-t rounded-b-lg hover:bg-zinc-300 bg-zinc-400 p-3 my-0.5"
+            <Link className="grow text-center text-zinc-900 rounded hover:bg-zinc-300 bg-zinc-400 p-3 my-0.5"
                 rel="me" href="/Blog">
                 <span>Blog</span>
             </Link>
-            <Link className="hidden grow text-center text-zinc-900 rounded-t rounded-b-lg hover:bg-zinc-300 bg-zinc-400 p-3 my-0.5"
+            <Link className="grow text-center text-zinc-900 rounded-t rounded-b-lg hover:bg-zinc-300 bg-zinc-400 p-3 my-0.5"
                 rel="me" href="/Resume">
                 <span>Résumé</span>
             </Link>

@@ -53,7 +53,7 @@ const Blog = ({ posts, totalPostCount }) => {
   return (
     <>
       <Head>
-        <title>Cameron Varley</title>
+        <title>Cameron Varley | Blog</title>
       </Head>
       <div id="top" className="flex flex-col max-w-6xl">
         <div className="drop-shadow-md flex flex-col rounded-lg">
