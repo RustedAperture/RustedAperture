@@ -3,7 +3,7 @@ import { faGithub, faMastodon, faTwitter, faLinkedin } from '@fortawesome/free-b
 
 export default function Social() {
     return (
-        <div className='xl:max-w-[50rem] grow xl:sticky top-8 max-xl:self-stretch drop-shadow-md flex flex-row flex-wrap items-stretch justify-center ml-1.5 mr-1.5'>
+        <div className='xl:max-w-[50rem] xl:sticky top-8 max-xl:self-stretch drop-shadow-md flex flex-row flex-wrap items-stretch justify-center ml-1.5 mr-1.5'>
             <a className="min-w-[48px] text-2xl text-center text-indigo-500 p-3 m-0.5"
                 rel="me" href="https://mstdn.ca/@RustedAperture">
                 <FontAwesomeIcon icon={faMastodon}/>
