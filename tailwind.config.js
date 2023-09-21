@@ -7,7 +7,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Nunito'],
+      },
+    },
     aspectRatio: {
       auto: 'auto',
       square: '1 / 1',
