@@ -13,7 +13,7 @@ export default function Resume() {
         <Head>
           <title>Cameron Varley | Portfolio</title>
         </Head>
-        <div className="min-h-[66px] bg-white dark:bg-zinc-800 mb-0.5 max-md:mt-0.5 md:mt-2 mx-2 md:rounded-t-lg rounded max-md:rounded-b flex flex-col md:flex-row overflow-hidden justify-between md:items-center py-3 px-6" >
+        <div className="md:min-h-[66px] bg-white dark:bg-zinc-800 mb-0.5 max-md:mt-0.5 md:mt-2 mx-2 md:rounded-t-lg rounded max-md:rounded-b flex flex-col md:flex-row overflow-hidden justify-between md:items-center py-3 px-6" >
           <div className=""><strong>Portfolio</strong></div>
         </div >
         <div id="top" className="grid md:grid-cols-2 lg:grid-cols-3 gap-1 my-0.5 mx-2">
