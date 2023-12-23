@@ -27,7 +27,7 @@ export default function Resume() {
               <Image className="max-h-[200px] rounded-t object-cover object-top" src={recipe}/>
               <div className="p-6">
                 <div className="flex flex-row justify-between items-baseline">
-                  <p className="text-lg"><strong>Precipe App</strong></p>
+                  <p className="text-lg"><strong>Recipe Book</strong></p>
                   <div className="bg-sky-500 px-1 py-0.5 rounded">Friend</div>
                 </div>
                 <div className="pt-2">Built using Next.js & Sanity. Store and search for recipes.</div>
@@ -51,7 +51,7 @@ export default function Resume() {
               <Image className="max-h-[200px] rounded-t object-cover object-top" src={textwars}/>
               <div className="p-6">
                 <div className="flex flex-row justify-between items-baseline">
-                  <p className="text-lg"><strong>Precipe App</strong></p>
+                  <p className="text-lg"><strong>Text Game</strong></p>
                   <div className="bg-teal-500 px-1 py-0.5 rounded">Myself</div>
                 </div>
                 <div className="pt-2">Small demonstration game to showcase python OOP skills.</div>
