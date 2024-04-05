@@ -12,10 +12,6 @@ export default function Menu() {
                 <span>Home</span>
             </Link>
             <Link className="grow text-center text-zinc-900 rounded hover:bg-zinc-300 bg-zinc-400 p-3 my-0.5"
-                rel="me" href="/Blog">
-                <span>Blog</span>
-            </Link>
-            <Link className="grow text-center text-zinc-900 rounded hover:bg-zinc-300 bg-zinc-400 p-3 my-0.5"
                 rel="me" href="/Resume">
                 <span>Résumé</span>
             </Link>
