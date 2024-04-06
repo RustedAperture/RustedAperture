@@ -6,6 +6,7 @@ import Image from 'next/image';
 import art from '../img/art.png'
 import recipe from '../img/recipe.png'
 import textwars from '../img/textwars.png'
+import watch from '../img/watch.png'
 
 export default function Resume() {
   return (
@@ -55,6 +56,18 @@ export default function Resume() {
                   <div className="bg-teal-500 px-1 py-0.5 rounded">Myself</div>
                 </div>
                 <div className="pt-2">Small demonstration game to showcase python OOP skills.</div>
+              </div>
+            </a>
+          </div>
+          <div className="flex flex-col dark:bg-zinc-800 bg-white rounded my-0.5">
+            <a href="https://github.com/RustedAperture/Text-Wars" target="_blank" rel="noreferrer">
+              <Image className="max-h-[200px] rounded-t object-cover object-top" src={watch}/>
+              <div className="p-6">
+                <div className="flex flex-row justify-between items-baseline">
+                  <p className="text-lg"><strong>Synthetik</strong></p>
+                  <div className="bg-teal-500 px-1 py-0.5 rounded">Myself</div>
+                </div>
+                <div className="pt-2">First watch face released on google play store</div>
               </div>
             </a>
           </div>
