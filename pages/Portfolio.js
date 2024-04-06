@@ -60,8 +60,8 @@ export default function Resume() {
             </a>
           </div>
           <div className="flex flex-col dark:bg-zinc-800 bg-white rounded my-0.5">
-            <a href="https://github.com/RustedAperture/Text-Wars" target="_blank" rel="noreferrer">
-              <Image className="max-h-[200px] rounded-t object-cover object-top" src={watch}/>
+            <a href="https://play.google.com/store/apps/details?id=com.walnutfox.retro" target="_blank" rel="noreferrer">
+              <Image className="max-h-[200px] rounded-t object-fit object-top" src={watch}/>
               <div className="p-6">
                 <div className="flex flex-row justify-between items-baseline">
                   <p className="text-lg"><strong>Synthetik</strong></p>
