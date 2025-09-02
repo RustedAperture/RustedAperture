@@ -100,10 +100,23 @@ export default function Resume() {
                     <p className="text-3xl">Work Experience</p>
                     <div>
                         <p className="text-xl font-bold">
+                            Junior Developer{" "}
+                            <span className="font-normal text-base">
+                                <FontAwesomeIcon icon={faCircle} size="2xs" />{" "}
+                                Feb 2025 - Present
+                            </span>
+                        </p>
+                        <p>Givergy</p>
+                        <p>
+                            Developing and maintaining web application using java and javascript technologies.
+                        </p>
+                    </div>
+                    <div>
+                        <p className="text-xl font-bold">
                             Event and Product Support Specialist{" "}
                             <span className="font-normal text-base">
                                 <FontAwesomeIcon icon={faCircle} size="2xs" />{" "}
-                                June 2022
+                                June 2022 - Feb 2025
                             </span>
                         </p>
                         <p>Givergy</p>
