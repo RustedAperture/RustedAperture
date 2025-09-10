@@ -24,9 +24,9 @@ export default function Resume() {
                         their goals.
                     </p>
                 </div>
-                <div className="flex gap-x-3">
+                <div className="flex flex-wrap gap-3 w-full">
                     <span>
-                        <FontAwesomeIcon icon={faLocationPin} /> Mississauga,
+                        <FontAwesomeIcon icon={faLocationPin} /> Thunder Bay,
                         Canada
                     </span>
                     <span>
@@ -38,22 +38,28 @@ export default function Resume() {
                 </div>
                 <div className="flex flex-col gap-y-4">
                     <p className="text-3xl">Skills</p>
-                    <div className="flex gap-x-3 items-baseline">
+                    <div className="flex flex-wrap gap-x-3 items-baseline">
                         <p className="text-xl font-bold">Languages</p>
-                        <p className="underline decoration-2">Next.JS</p>
-                        <p className="underline decoration-2">Python</p>
-                        <p className="underline decoration-2">Bash</p>
-                        <p className="underline decoration-2">Java</p>
-                        <p className="underline decoration-2">
-                            HTML/CSS/Javascript
-                        </p>
+                        <p className="decoration-2">Next.JS</p>
+                        <p className="decoration-2">React</p>
+                        <p className="decoration-2">Python</p>
+                        <p className="decoration-2">Bash</p>
+                        <p className="decoration-2">Java</p>
+                        <p className="decoration-2">CSS</p>
                     </div>
-                    <div className="flex gap-x-3 items-baseline">
+                    <div className="flex flex-wrap gap-x-3 items-baseline">
                         <p className="text-xl font-bold">Tools</p>
-                        <p className="underline decoration-2">
-                            Visual Studio Code
-                        </p>
-                        <p className="underline decoration-2">Git</p>
+                        <p className="decoration-2">Visual Studio Code</p>
+                        <p className="decoration-2">JetBrains Idea</p>
+                        <p className="decoration-2">Git</p>
+                        <p className="decoration-2">Terraform</p>
+                    </div>
+                    <div className="flex flex-wrap gap-x-3 items-baseline">
+                        <p className="text-xl font-bold">Platforms</p>
+                        <p className="decoration-2">Github</p>
+                        <p className="decoration-2">Bitbucket</p>
+                        <p className="decoration-2">GCP</p>
+                        <p className="decoration-2">Monday</p>
                     </div>
                 </div>
                 <div className="flex flex-col gap-y-4">
@@ -84,16 +90,6 @@ export default function Resume() {
                             </span>
                         </p>
                         <p>Photography - Still & Motion</p>
-                    </div>
-                    <div>
-                        <p className="text-xl font-bold">
-                            John Fraser Secondary School{" "}
-                            <span className="font-normal text-base">
-                                <FontAwesomeIcon icon={faCircle} size="2xs" />{" "}
-                                2011 - 2015
-                            </span>
-                        </p>
-                        <p>High School Diploma</p>
                     </div>
                 </div>
                 <div className="flex flex-col gap-y-4">
