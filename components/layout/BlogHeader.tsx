@@ -1,7 +1,7 @@
 import Search from "../../search.json";
 import { useState } from "react";
 import Link from 'next/link';
-import { navigate } from "@reach/router";
+
 import { ThemeSwitcher } from "../ThemeSwitcher";
 
 
