@@ -30,7 +30,7 @@ export default function ResumePage() {
               </a>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              Results-oriented Full Stack Developer and technical operations specialist with a proven track record of success in end-to-end web application development and infrastructure automation. Specializes in building robust solutions using Java, TypeScript, and AI-assisted development workflows. Brings extensive experience in cross-functional collaboration, from establishing CI/CD pipelines and managing Terraform environments to leading high-profile technical event operations. Recognized for a strong work ethic, adaptability, and a commitment to continuous improvement.
+              Results-oriented Fullstack Engineer and technical operations specialist with a proven track record of success in end-to-end web application development and infrastructure automation. Specializes in building robust solutions using Java, TypeScript, and AI-assisted development workflows. Brings extensive experience in cross-functional collaboration, from establishing CI/CD pipelines and managing Terraform environments to leading high-profile technical event operations. Recognized for a strong work ethic, adaptability, and a commitment to continuous improvement.
             </p>
           </div>
 
@@ -77,13 +77,13 @@ export default function ResumePage() {
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-2">
-                  <h4 className="font-medium">Junior Fullstack Developer</h4>
+                  <h4 className="font-medium">Fullstack Engineer</h4>
                   <span className="text-muted-foreground text-sm">•</span>
                   <span className="text-sm text-muted-foreground">Feb 2025 - Present</span>
                 </div>
                 <span className="text-sm font-medium text-muted-foreground">momoGood (formerly Givergy)</span>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  Full Stack Developer building end-to-end applications with Java and TypeScript. I specialize in resolving complex bugs and building out new features, utilizing Claude Code to navigate codebases quickly and ensure my solutions are robust and well-tested.
+                  Fullstack Engineer building end-to-end applications with Java and TypeScript. I specialize in resolving complex bugs and building out new features, utilizing Claude Code to navigate codebases quickly and ensure my solutions are robust and well-tested.
                 </p>
                 <ul className="mt-1 list-disc pl-4 text-sm text-muted-foreground space-y-1">
                   <li>Shipped multiple high-impact, user-facing features.</li>
