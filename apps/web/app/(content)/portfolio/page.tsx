@@ -4,10 +4,12 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@workspace/ui/components/card"
 import { Badge } from "@workspace/ui/components/badge"
 import { Button } from "@workspace/ui/components/button"
 import Link from "next/link"
+import { FaGithub, FaGlobe } from "react-icons/fa6"
 
 export default function PortfolioPage() {
   return (
@@ -41,39 +43,63 @@ export default function PortfolioPage() {
             <h3 className="text-lg font-semibold tracking-tight border-b pb-2">Active Projects</h3>
             <div className="grid gap-4 md:grid-cols-2">
               
-              {/* EZGif */}
-              <a href="https://github.com/RustedAperture/ezgif" target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-[1.02]">
-                <Card className="h-full border border-border/50 hover:border-primary/50 transition-colors bg-card hover:bg-accent/10">
-                  <CardHeader className="pb-3">
-                    <div className="flex justify-between items-start gap-4">
-                      <CardTitle className="text-base">ezgif</CardTitle>
-                      <Badge variant="outline" className="bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20">Rust</Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      A Discord user app and web dashboard for managing and serving personal random image and GIF categories. Built with a Rust Axum backend and a Next.js frontend.
-                    </p>
-                  </CardContent>
+              {/* MemeBucket */}
+              <div className="transition-transform hover:scale-[1.02]">
+                <Card className="h-full flex flex-col justify-between border border-border/50 hover:border-primary/50 transition-colors bg-card hover:bg-accent/10">
+                  <div>
+                    <CardHeader className="pb-3">
+                      <div className="flex justify-between items-start gap-4">
+                        <CardTitle className="text-base">memeBucket</CardTitle>
+                        <Badge variant="outline" className="bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20">Rust</Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground">
+                        A Discord user app and web dashboard for managing and serving personal random image and GIF categories. Built with a Rust Axum backend and a Next.js frontend.
+                      </p>
+                    </CardContent>
+                  </div>
+                  <CardFooter className="flex gap-2">
+                    <Button variant="outline" size="sm" className="gap-1.5 cursor-pointer" render={<a href="https://github.com/RustedAperture/memeBucket" target="_blank" rel="noopener noreferrer" />}>
+                      <FaGithub />
+                      GitHub
+                    </Button>
+                    <Button variant="outline" size="sm" className="gap-1.5 cursor-pointer" render={<a href="https://memebucket.wfox.app" target="_blank" rel="noopener noreferrer" />}>
+                      <FaGlobe />
+                      Website
+                    </Button>
+                  </CardFooter>
                 </Card>
-              </a>
+              </div>
 
               {/* PetBot */}
-              <a href="https://github.com/RustedAperture/petbot" target="_blank" rel="noopener noreferrer" className="block transition-transform hover:scale-[1.02]">
-                <Card className="h-full border border-border/50 hover:border-primary/50 transition-colors bg-card hover:bg-accent/10">
-                  <CardHeader className="pb-3">
-                    <div className="flex justify-between items-start gap-4">
-                      <CardTitle className="text-base">petbot</CardTitle>
-                      <Badge variant="outline" className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20">TypeScript</Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      An interactive, feature-rich bot built in TypeScript designed for community engagement, offering real-time interactions and robust command handling.
-                    </p>
-                  </CardContent>
+              <div className="transition-transform hover:scale-[1.02]">
+                <Card className="h-full flex flex-col justify-between border border-border/50 hover:border-primary/50 transition-colors bg-card hover:bg-accent/10">
+                  <div>
+                    <CardHeader className="pb-3">
+                      <div className="flex justify-between items-start gap-4">
+                        <CardTitle className="text-base">petbot</CardTitle>
+                        <Badge variant="outline" className="bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20">TypeScript</Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground">
+                        An interactive, feature-rich bot built in TypeScript designed for community engagement, offering real-time interactions and robust command handling.
+                      </p>
+                    </CardContent>
+                  </div>
+                  <CardFooter className="flex gap-2">
+                    <Button variant="outline" size="sm" className="gap-1.5 cursor-pointer" render={<a href="https://github.com/RustedAperture/petbot" target="_blank" rel="noopener noreferrer" />}>
+                      <FaGithub />
+                      GitHub
+                    </Button>
+                    <Button variant="outline" size="sm" className="gap-1.5 cursor-pointer" render={<a href="https://petbot.wfox.app" target="_blank" rel="noopener noreferrer" />}>
+                      <FaGlobe />
+                      Website
+                    </Button>
+                  </CardFooter>
                 </Card>
-              </a>
+              </div>
 
 
 
