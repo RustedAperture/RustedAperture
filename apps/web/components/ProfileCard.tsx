@@ -43,7 +43,15 @@ export function ProfileCard({ isHome = false }: ProfileCardProps) {
           setIsTerminalMaximized(JSON.parse(savedMaximized))
         }
       } catch (e) {
-        console.error("Error loading terminal state in ProfileCard", e)
+        console.error("Error loading terminal state in ProfileCard. Resetting states.", e)
+        try {
+          sessionStorage.clear()
+        } catch (clearErr) {
+          console.error("Failed to clear sessionStorage", clearErr)
+        }
+        setIsTerminalOpen(false)
+        setIsTerminalMinimized(false)
+        setIsTerminalMaximized(false)
       }
     }
   }, [])
@@ -221,18 +229,27 @@ export function ProfileCard({ isHome = false }: ProfileCardProps) {
         )}
       </div>
 
-      <TerminalModal
-        isOpen={isTerminalOpen}
-        onClose={() => {
-          setIsTerminalOpen(false)
-          setIsTerminalMinimized(false)
-          setIsTerminalMaximized(false)
-        }}
-        isMinimized={isTerminalMinimized}
-        setIsMinimized={setIsTerminalMinimized}
-        isMaximized={isTerminalMaximized}
-        setIsMaximized={setIsTerminalMaximized}
-      />
+      {isTerminalOpen && (
+        <TerminalModal
+          isOpen={isTerminalOpen}
+          onClose={() => {
+            setIsTerminalOpen(false)
+            setIsTerminalMinimized(false)
+            setIsTerminalMaximized(false)
+            if (typeof window !== "undefined") {
+              try {
+                sessionStorage.clear()
+              } catch (e) {
+                console.error("Error clearing terminal session", e)
+              }
+            }
+          }}
+          isMinimized={isTerminalMinimized}
+          setIsMinimized={setIsTerminalMinimized}
+          isMaximized={isTerminalMaximized}
+          setIsMaximized={setIsTerminalMaximized}
+        />
+      )}
     </div>
   )
 }
