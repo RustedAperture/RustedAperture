@@ -83,7 +83,7 @@ export default function ResumePage() {
                 </div>
                 <span className="text-sm font-medium text-muted-foreground">momoGood (formerly Givergy)</span>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  Fullstack Engineer building end-to-end applications with Java and TypeScript. I specialize in resolving complex bugs and building out new features, utilizing Claude Code to navigate codebases quickly and ensure my solutions are robust and well-tested.
+                  Fullstack Engineer building end-to-end applications with Java and TypeScript. Promoted from Junior Fullstack Developer after one year of consistent, high-impact contributions. Specialize in resolving complex bugs and building out new features, utilizing Claude Code to navigate codebases quickly and ensure solutions are robust and well-tested.
                 </p>
                 <ul className="mt-1 list-disc pl-4 text-sm text-muted-foreground space-y-1">
                   <li>Shipped multiple high-impact, user-facing features.</li>
