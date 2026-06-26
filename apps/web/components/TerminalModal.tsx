@@ -7,6 +7,10 @@ import { FaTerminal } from "react-icons/fa6"
 interface TerminalModalProps {
   isOpen: boolean
   onClose: () => void
+  isMinimized: boolean
+  setIsMinimized: (min: boolean) => void
+  isMaximized: boolean
+  setIsMaximized: (max: boolean) => void
 }
 
 interface HistoryItem {
@@ -15,7 +19,14 @@ interface HistoryItem {
   isHtml?: boolean
 }
 
-export function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
+export function TerminalModal({ 
+  isOpen, 
+  onClose,
+  isMinimized,
+  setIsMinimized,
+  isMaximized,
+  setIsMaximized
+}: TerminalModalProps) {
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   
@@ -73,6 +84,7 @@ export function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
         if (savedPosition) {
           setPosition(JSON.parse(savedPosition))
         }
+
       } catch (e) {
         console.error("Error loading terminal state from sessionStorage", e)
       }
@@ -124,6 +136,7 @@ export function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
   // Dragging event handlers
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.button !== 0) return
+    if (isMaximized) return // Disable dragging when maximized
     const target = e.target as HTMLElement
     if (target.closest("button") || target.closest("input")) return
 
@@ -134,6 +147,7 @@ export function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
   }
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (isMaximized) return // Disable dragging when maximized
     const target = e.target as HTMLElement
     if (target.closest("button") || target.closest("input")) return
 
@@ -553,6 +567,18 @@ export function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
   const formatMonokai = (text: string) => {
     if (text === "") return <span>&nbsp;</span>
 
+    // Highlight 'help' in bold green
+    if (text.includes("'help'")) {
+      const parts = text.split("'help'")
+      return (
+        <span>
+          {formatMonokai(parts[0] || "")}
+          <span className="text-[#a6e22e] font-bold">'help'</span>
+          {formatMonokai(parts[1] || "")}
+        </span>
+      )
+    }
+
     // 1. Help Command Highlighting: "  about       - Brief..."
     const helpRegex = /^(\s{2})([a-z]+)(\s+-\s+)(.+)$/
     if (helpRegex.test(text)) {
@@ -629,15 +655,70 @@ export function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
   }
 
 
+  if (isMinimized) {
+    return (
+      <div 
+        className="fixed bottom-6 left-6 z-[9999] flex items-center gap-3 pl-3 pr-4 py-2.5 rounded-lg border border-[#3e3d32] bg-[#272822]/95 backdrop-blur-md shadow-2xl hover:border-[#a6e22e]/50 hover:bg-[#1e1f1c]/90 transition-all duration-200 cursor-pointer group select-none animate-in fade-in slide-in-from-bottom-4"
+        onClick={() => {
+          setIsMinimized(false)
+          setTimeout(() => {
+            inputRef.current?.focus()
+          }, 100)
+        }}
+        title="Restore Developer Terminal"
+      >
+        {/* Minimized window controls (just close and restore) */}
+        <div className="flex gap-1.5 items-center mr-1" onClick={(e) => e.stopPropagation()}>
+          <button 
+            onClick={onClose}
+            className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] cursor-pointer hover:brightness-75 transition-all flex items-center justify-center group/btn border-box"
+            style={{ padding: 0 }}
+            title="Close"
+          >
+            <span className="text-[8px] text-zinc-950 font-bold opacity-0 group-hover/btn:opacity-100 transition-opacity leading-none pb-0.5">×</span>
+          </button>
+          <button 
+            onClick={() => {
+              setIsMinimized(false)
+              setTimeout(() => {
+                inputRef.current?.focus()
+              }, 100)
+            }}
+            className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] cursor-pointer hover:brightness-75 transition-all flex items-center justify-center group/btn border-box"
+            style={{ padding: 0 }}
+            title="Restore"
+          >
+            <span className="text-[8px] text-zinc-950 font-bold opacity-0 group-hover/btn:opacity-100 transition-opacity leading-none pb-0.5">＋</span>
+          </button>
+        </div>
+
+        <div className="flex items-center gap-2 font-mono text-xs font-bold text-[#f8f8f2]">
+          <FaTerminal className="w-3.5 h-3.5 text-[#a6e22e] group-hover:scale-110 transition-transform" />
+          <span>guest@rustedaperture:~</span>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-150"
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-all duration-300 ${
+        isMaximized ? "p-0" : "p-4"
+      } animate-in fade-in duration-150`}
       onClick={onClose}
     >
       {/* Terminal Window container */}
       <div 
-        className="relative w-full max-w-2xl h-[450px] rounded-lg border border-[#3e3d32] bg-[#272822]/95 backdrop-blur-md shadow-2xl flex flex-col font-mono text-sm overflow-hidden text-[#f8f8f2] animate-in fade-in zoom-in-95 duration-200"
-        style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
+        className={`relative flex flex-col font-mono text-sm overflow-hidden text-[#f8f8f2] shadow-2xl ${
+          isDragging ? "" : "transition-all duration-300 ease-in-out"
+        } ${
+          isMaximized 
+            ? "w-full h-full max-w-none rounded-none border-none bg-[#272822]" 
+            : "w-full max-w-2xl h-[450px] rounded-lg border border-[#3e3d32] bg-[#272822]/95 backdrop-blur-md"
+        } animate-in fade-in zoom-in-95 duration-200`}
+        style={{ 
+          transform: isMaximized ? "none" : `translate(${position.x}px, ${position.y}px)` 
+        }}
         onClick={(e) => {
           e.stopPropagation() // Prevent closing when clicking inside the window
           handleContainerClick()
@@ -646,10 +727,15 @@ export function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
         {/* Terminal Header */}
         <div 
           className={`flex items-center justify-between px-4 py-2 border-b border-[#181915] bg-[#1e1f1c]/80 select-none shrink-0 ${
-            isDragging ? "cursor-grabbing" : "cursor-grab"
+            isMaximized 
+              ? "cursor-default" 
+              : isDragging 
+                ? "cursor-grabbing" 
+                : "cursor-grab"
           }`}
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
+          onDoubleClick={() => setIsMaximized(!isMaximized)}
         >
           {/* macOS window controls */}
           <div className="flex gap-1.5 items-center">
@@ -661,8 +747,22 @@ export function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
             >
               <span className="text-[8px] text-zinc-950 font-bold opacity-0 group-hover:opacity-100 transition-opacity leading-none pb-0.5">×</span>
             </button>
-            <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] cursor-not-allowed" title="Minimize" />
-            <div className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] cursor-not-allowed" title="Maximize" />
+            <button 
+              onClick={() => setIsMinimized(true)}
+              className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] cursor-pointer hover:brightness-75 transition-all flex items-center justify-center group border-box"
+              style={{ padding: 0 }}
+              title="Minimize"
+            >
+              <span className="text-[8px] text-zinc-950 font-bold opacity-0 group-hover:opacity-100 transition-opacity leading-none pb-1">−</span>
+            </button>
+            <button 
+              onClick={() => setIsMaximized(!isMaximized)}
+              className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] cursor-pointer hover:brightness-75 transition-all flex items-center justify-center group border-box"
+              style={{ padding: 0 }}
+              title={isMaximized ? "Demaximize" : "Maximize"}
+            >
+              <span className="text-[6px] text-zinc-950 font-bold opacity-0 group-hover:opacity-100 transition-opacity leading-none">⤢</span>
+            </button>
           </div>
           {/* Terminal Title */}
           <div className="flex items-center gap-1.5 text-xs font-bold text-[#75715e] font-mono">

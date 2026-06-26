@@ -21,10 +21,51 @@ export function ProfileCard({ isHome = false }: ProfileCardProps) {
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [isTerminalOpen, setIsTerminalOpen] = useState(false)
+  const [isTerminalMinimized, setIsTerminalMinimized] = useState(false)
+  const [isTerminalMaximized, setIsTerminalMaximized] = useState(false)
 
+  // Load state from sessionStorage on mount
   useEffect(() => {
     setMounted(true)
+    if (typeof window !== "undefined") {
+      try {
+        const savedOpen = sessionStorage.getItem("terminal_open")
+        const savedMinimized = sessionStorage.getItem("terminal_minimized")
+        const savedMaximized = sessionStorage.getItem("terminal_maximized")
+
+        if (savedOpen) {
+          setIsTerminalOpen(JSON.parse(savedOpen))
+        }
+        if (savedMinimized) {
+          setIsTerminalMinimized(JSON.parse(savedMinimized))
+        }
+        if (savedMaximized) {
+          setIsTerminalMaximized(JSON.parse(savedMaximized))
+        }
+      } catch (e) {
+        console.error("Error loading terminal state in ProfileCard", e)
+      }
+    }
   }, [])
+
+  // Save states to sessionStorage when they change
+  useEffect(() => {
+    if (mounted) {
+      sessionStorage.setItem("terminal_open", JSON.stringify(isTerminalOpen))
+    }
+  }, [isTerminalOpen, mounted])
+
+  useEffect(() => {
+    if (mounted) {
+      sessionStorage.setItem("terminal_minimized", JSON.stringify(isTerminalMinimized))
+    }
+  }, [isTerminalMinimized, mounted])
+
+  useEffect(() => {
+    if (mounted) {
+      sessionStorage.setItem("terminal_maximized", JSON.stringify(isTerminalMaximized))
+    }
+  }, [isTerminalMaximized, mounted])
 
   return (
     <div
@@ -134,9 +175,28 @@ export function ProfileCard({ isHome = false }: ProfileCardProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 rounded-md bg-[#0f172a] dark:bg-zinc-800 text-zinc-200 hover:bg-emerald-600 dark:hover:bg-emerald-600 hover:text-white cursor-pointer transition-colors"
-              onClick={() => setIsTerminalOpen(true)}
-              title="Open Developer Terminal"
+              className={`h-8 w-8 rounded-md text-zinc-200 cursor-pointer transition-colors ${
+                isTerminalOpen && !isTerminalMinimized
+                  ? "bg-emerald-600 hover:bg-emerald-600/80 text-white"
+                  : "bg-[#0f172a] dark:bg-zinc-800 hover:bg-emerald-600 dark:hover:bg-emerald-600 hover:text-white"
+              }`}
+              onClick={() => {
+                if (!isTerminalOpen) {
+                  setIsTerminalOpen(true)
+                  setIsTerminalMinimized(false)
+                } else if (isTerminalMinimized) {
+                  setIsTerminalMinimized(false)
+                } else {
+                  setIsTerminalMinimized(true)
+                }
+              }}
+              title={
+                !isTerminalOpen 
+                  ? "Open Developer Terminal" 
+                  : isTerminalMinimized 
+                    ? "Restore Developer Terminal" 
+                    : "Minimize Developer Terminal"
+              }
             >
               <Terminal className="h-4 w-4" />
             </Button>
@@ -163,7 +223,15 @@ export function ProfileCard({ isHome = false }: ProfileCardProps) {
 
       <TerminalModal
         isOpen={isTerminalOpen}
-        onClose={() => setIsTerminalOpen(false)}
+        onClose={() => {
+          setIsTerminalOpen(false)
+          setIsTerminalMinimized(false)
+          setIsTerminalMaximized(false)
+        }}
+        isMinimized={isTerminalMinimized}
+        setIsMinimized={setIsTerminalMinimized}
+        isMaximized={isTerminalMaximized}
+        setIsMaximized={setIsTerminalMaximized}
       />
     </div>
   )
