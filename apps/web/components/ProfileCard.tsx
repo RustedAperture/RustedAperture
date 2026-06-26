@@ -33,6 +33,7 @@ export function ProfileCard({ isHome = false }: ProfileCardProps) {
           <div className="flex flex-col">
             <CardTitle>CAMERON VARLEY</CardTitle>
             <CardDescription>RustedAperture</CardDescription>
+            <CardDescription>Fullstack Engineer</CardDescription>
           </div>
         </CardHeader>
         <CardContent className="flex flex-col gap-2">
