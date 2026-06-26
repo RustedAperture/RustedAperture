@@ -7,6 +7,10 @@ import { Button } from "@workspace/ui/components/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card"
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6"
 import { SiBluesky } from "react-icons/si"
+import { useTheme } from "next-themes"
+import { Sun, Moon, Terminal } from "lucide-react"
+import { useEffect, useState } from "react"
+import { TerminalModal } from "@/components/TerminalModal"
 
 interface ProfileCardProps {
   isHome?: boolean
@@ -14,10 +18,17 @@ interface ProfileCardProps {
 
 export function ProfileCard({ isHome = false }: ProfileCardProps) {
   const pathname = usePathname()
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <div
-      className={`flex w-full flex-col gap-4 ${
+      className={`flex w-full flex-col gap-4 print:hidden ${
         isHome ? "max-w-sm" : "max-w-sm md:w-80 shrink-0"
       }`}
     >
@@ -118,7 +129,42 @@ export function ProfileCard({ isHome = false }: ProfileCardProps) {
         >
           <FaLinkedin className="h-4 w-4" />
         </Button>
+        {mounted && (
+          <>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 rounded-md bg-[#0f172a] dark:bg-zinc-800 text-zinc-200 hover:bg-emerald-600 dark:hover:bg-emerald-600 hover:text-white cursor-pointer transition-colors"
+              onClick={() => setIsTerminalOpen(true)}
+              title="Open Developer Terminal"
+            >
+              <Terminal className="h-4 w-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className={`h-8 w-8 rounded-md text-white hover:text-white cursor-pointer transition-colors ${
+                resolvedTheme === "dark"
+                  ? "bg-[#d97706] hover:bg-[#d97706]/80"
+                  : "bg-[#475569] hover:bg-[#475569]/80"
+              }`}
+              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+              title="Toggle Theme"
+            >
+              {resolvedTheme === "dark" ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
+            </Button>
+          </>
+        )}
       </div>
+
+      <TerminalModal
+        isOpen={isTerminalOpen}
+        onClose={() => setIsTerminalOpen(false)}
+      />
     </div>
   )
 }

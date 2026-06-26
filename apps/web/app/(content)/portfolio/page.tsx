@@ -10,11 +10,13 @@ import { Badge } from "@workspace/ui/components/badge"
 import { Button } from "@workspace/ui/components/button"
 import Link from "next/link"
 import { FaGithub, FaGlobe } from "react-icons/fa6"
+import { PageTransition } from "@/components/PageTransition"
 
 export default function PortfolioPage() {
   return (
     <div className="flex w-full max-w-4xl flex-1 flex-col">
       <Card className="min-h-[600px] w-full">
+        <PageTransition className="flex flex-col flex-1">
         <CardHeader>
           <CardTitle>Portfolio</CardTitle>
           <CardDescription>
@@ -23,7 +25,7 @@ export default function PortfolioPage() {
         </CardHeader>
         <CardContent className="flex flex-col gap-8">
           {/* Navigation */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mt-2">
             <Button variant="secondary" size="sm" render={<Link href="#active" />}>
               Active Projects
             </Button>
@@ -283,7 +285,8 @@ export default function PortfolioPage() {
             </div>
           </div>
         </CardContent>
-      </Card>
-    </div>
+      </PageTransition>
+    </Card>
+  </div>
   )
 }
