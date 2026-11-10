@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # The root package-lock.json covers every npm workspace.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
